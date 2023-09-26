@@ -113,6 +113,55 @@
     color: #ccc;
 }
 
+/* Style for the reaction buttons for the first design */
+.blog-reactions {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the far end */
+    align-items: center;
+    margin-top: 20px;
+    margin-right: 20px; /* Add some margin for spacing */
+}
+
+.reaction {
+    margin: 0 10px;
+}
+
+.like-button,
+      .dislike-button {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          border-radius: 50%;
+          padding: 5px; /* Reduce button padding for smaller size */
+          transition: background-color 0.3s, transform 0.2s;
+      }
+
+.like-button:hover,
+.dislike-button:hover {
+    background-color: rgba(76, 175, 80, 0.8); /* Change the background color on hover */
+    transform: scale(1.1); /* Add a slight scale effect on hover */
+}
+
+.like-button:focus,
+.dislike-button:focus {
+    outline: none; /* Remove the focus outline */
+}
+
+/* Style for the thumbs-up and thumbs-down icons */
+.like-button i,
+.dislike-button i {
+    font-size: 18px; /* Reduce the icon size */
+    color: #4caf50;
+}
+
+/* Style for the counts */
+#like-count1,
+#dislike-count1 {
+    margin-top: 5px;
+    font-size: 12px; /* Reduce the count font size */
+    color: #fff;
+}
+
 .green-dotted-line {
     content: "";
     display: block;
@@ -131,6 +180,13 @@
     }
     100% {
         background-position: 100px -10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-box-img img {
+        max-width: 100%; /* Set maximum width to 100% for mobile view */
+        height: 300px; /* Automatically adjust height to maintain aspect ratio */
     }
 }
 
@@ -324,6 +380,20 @@
             <div class="blog-box-img">
                 <img src="./srhr.png" alt="blog img" style="height:500px;">
             </div>
+                      <div class="blog-reactions">
+                <div class="reaction">
+                    <button class="like-button" onclick="handleLike1()"> <!-- Use handleLike1 for the first design -->
+                        <i class="fas fa-thumbs-up"></i>
+                        <span id="like-count1">0</span>
+                    </button>
+                </div>
+                <div class="reaction">
+                    <button class="dislike-button" onclick="handleDislike1()"> <!-- Use handleDislike1 for the first design -->
+                        <i class="fas fa-thumbs-down"></i>
+                        <span id="dislike-count1">0</span>
+                    </button>
+                </div>
+            </div> 
             <div class="blog-box-text">
                 <p class="text-center"> <strong>WHY SRHR IS OFTEN EXCLUDED FROM UHC</strong> </p>
                 <div class="green-dotted-line"></div>
@@ -430,6 +500,92 @@
       </div>
     </footer>
     <script>
+      // JavaScript code for handling like and dislike for the first design
+let liked1 = false;
+let disliked1 = false;
+let likeCount1 = 0;
+let dislikeCount1 = 0;
+
+// Check if the user has liked or disliked before using cookies or localStorage
+if (localStorage.getItem("liked1")) {
+    liked1 = true;
+}
+
+if (localStorage.getItem("disliked1")) {
+    disliked1 = true;
+}
+
+// Retrieve like and dislike counts from localStorage if available
+if (localStorage.getItem("likeCount1")) {
+    likeCount1 = parseInt(localStorage.getItem("likeCount1"));
+    document.getElementById("like-count1").textContent = likeCount1;
+}
+
+if (localStorage.getItem("dislikeCount1")) {
+    dislikeCount1 = parseInt(localStorage.getItem("dislikeCount1"));
+    document.getElementById("dislike-count1").textContent = dislikeCount1;
+}
+
+function handleLike1() {
+    if (!liked1) {
+        if (!disliked1) {
+            likeCount1++;
+            document.getElementById("like-count1").textContent = likeCount1;
+            liked1 = true;
+            localStorage.setItem("liked1", "true"); // Store the like action
+        } else {
+            // If disliked, remove the dislike first
+            dislikeCount1--;
+            document.getElementById("dislike-count1").textContent = dislikeCount1;
+            disliked1 = false;
+            likeCount1++;
+            document.getElementById("like-count1").textContent = likeCount1;
+            liked1 = true;
+            localStorage.setItem("liked1", "true"); // Store the like action
+            localStorage.removeItem("disliked1"); // Remove the dislike action
+        }
+    } else {
+        // If already liked, remove the like
+        likeCount1--;
+        document.getElementById("like-count1").textContent = likeCount1;
+        liked1 = false;
+        localStorage.removeItem("liked1"); // Remove the like action
+    }
+
+    // Store the updated likeCount1 in localStorage
+    localStorage.setItem("likeCount1", likeCount1.toString());
+}
+
+function handleDislike1() {
+    if (!disliked1) {
+        if (!liked1) {
+            dislikeCount1++;
+            document.getElementById("dislike-count1").textContent = dislikeCount1;
+            disliked1 = true;
+            localStorage.setItem("disliked1", "true"); // Store the dislike action
+        } else {
+            // If liked, remove the like first
+            likeCount1--;
+            document.getElementById("like-count1").textContent = likeCount1;
+            liked1 = false;
+            dislikeCount1++;
+            document.getElementById("dislike-count1").textContent = dislikeCount1;
+            disliked1 = true;
+            localStorage.setItem("disliked1", "true"); // Store the dislike action
+            localStorage.removeItem("liked1"); // Remove the like action
+        }
+    } else {
+        // If already disliked, remove the dislike
+        dislikeCount1--;
+        document.getElementById("dislike-count1").textContent = dislikeCount1;
+        disliked1 = false;
+        localStorage.removeItem("disliked1"); // Remove the dislike action
+    }
+
+    // Store the updated dislikeCount1 in localStorage
+    localStorage.setItem("dislikeCount1", dislikeCount1.toString());
+}
+
       // Get the back button element by its id
        const backButton = document.getElementById('backButton');
 
