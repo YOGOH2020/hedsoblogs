@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog SRHR | HEDSO</title>
+    <!-- Include Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Include custom CSS -->
+    <style>
+      body {
+        background-color: #191919;
+        color: #fff;
+      }
+
+      .navbar {
+        background-color: #161b24;
+      }
+
+      .nav-link {
+        color: #fff !important;
+      }
+
+      .dropdown-submenu {
+        position: relative;
+      }
+
+      .dropdown-submenu .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -1px;
+      }
+
+
+
+.glass-container {
+    background: #191919;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the blog box */
+.blog-box {
+    background: #161b24;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+
+
+.blog-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.blog-box-img {
+    position: relative;
+}
+
+.blog-box-img img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.blog-box-text {
+    margin-top: 10px;
+}
+
+.blog-box-text strong {
+    font-size: 1.2rem;
+    color: #4caf50;
+    font-weight: 600;
+}
+
+.blog-box-text p {
+    font-size: 1rem;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.blog-author {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.blog-author-img img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.blog-author-text strong {
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.blog-author-text span {
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+.green-dotted-line {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: rgba(76, 175, 80, 0.8); /* Change the background color */
+    background-image: radial-gradient(circle at 50%, #4caf50 5%, transparent 6%);
+    background-size: 10px 10px;
+    animation: moveDots 2s infinite linear; /* Apply animation */
+}
+
+
+@keyframes moveDots {
+    0% {
+        background-position: 0 -10px;
+    }
+    100% {
+        background-position: 100px -10px;
+    }
+}
+
+   .footer {
+        background-color: #161b24;
+        color: #fff;
+        padding: 20px 0;
+        margin-top: 40px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .footer a {
+        color: #4caf50;
+      }
+
+      .footer a:hover {
+        color: #fff;
+      }
+    </style>
+    <link rel="icon" href="./favicon-16x16.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="./favicon-16x16.png" type="image/x-icon" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="./index.php">HEDSO</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./index.php">Home</a>
+          </li>
+          <li
+            class="nav-item dropdown"
+            onmouseover="showDropdown(this)"
+            onmouseout="hideDropdown(this)"
+          >
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="aboutDropdown"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              About Us
+            </a>
+            <div class="dropdown-menu" aria-labelledby="aboutDropdown">
+              <a class="dropdown-item" href="./about.php">OverView</a>
+              <a class="dropdown-item" href="./board.php">Meet The Team</a>
+            </div>
+          </li>
+          <li
+            class="nav-item dropdown"
+            onmouseover="showDropdown(this)"
+            onmouseout="hideDropdown(this)"
+          >
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="programsDropdown"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Programs
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-side"
+              aria-labelledby="programsDropdown"
+            >
+              <div
+                class="dropdown-submenu"
+                onmouseover="showSubmenu(this)"
+                onmouseout="hideSubmenu(this)"
+              >
+                <a
+                  class="dropdown-item dropdown-toggle"
+                  href="./integ.html"
+                  role="button"
+                >
+                  Integrated Health and Well-Being
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="./gbv.php">GBV PREVENTION</a>
+                  <a class="dropdown-item" href="./srhr.php">AYSRH</a>
+                  <a class="dropdown-item" href="./wash.php">WASH</a>
+                  <a class="dropdown-item" href="./hiv.php">HIV PREVENTION</a>
+                </div>
+              </div>
+              <div class="dropdown-submenu">
+                <a class="dropdown-item" href="./agw.php" role="button">
+                  AGYW, PWDs and Youths Economic Empowerment
+                </a>
+              </div>
+              <div class="dropdown-submenu">
+                <a class="dropdown-item" href="./ongoing.php" role="button">
+                  Ongoing Projects
+                </a>
+              </div>
+              <div
+                class="dropdown-submenu"
+                onmouseover="showSubmenu(this)"
+                onmouseout="hideSubmenu(this)"
+              >
+                <a
+                  class="dropdown-item dropdown-toggle"
+                  href="./climateres.php"
+                  role="button"
+                >
+                  Climate Change Resilience
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="./waste.php"
+                    >WASTE MANAGEMENT</a
+                  >
+                  <a class="dropdown-item" href="./tree.php"
+                    >ECOSYSTEM RESTORATION</a
+                  >
+                  <a class="dropdown-item" href="./disaster.php"
+                    >DISASTER RISK REDUCTION</a
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./approach.php">Our Approach</a>
+          </li>
+          <li
+            class="nav-item dropdown"
+            onmouseover="showDropdown(this)"
+            onmouseout="hideDropdown(this)"
+          >
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="resourcesDropdown"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Resources
+            </a>
+            <div class="dropdown-menu" aria-labelledby="resourcesDropdown">
+              <a class="dropdown-item" href="./newsletter.php">Newsletters</a>
+              <a class="dropdown-item" href="./gallery.php">Our Gallery</a>
+              <a class="dropdown-item" href="./blog.php">Our Blogs</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./donate.php">Donate</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./volunteer.php">Volunteer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./contact.php">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+<div id="blog-box-container">
+<div class="glass-container">
+  <button id="backButton" class="btn btn-primary">
+    <i class="fas fa-arrow-left"></i> Back to Blogs
+</button>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="blog-box">
+            <div class="blog-box-img">
+                <img src="./images/srhr.png" alt="blog img" style="height:500px;">
+            </div>
+            <div class="blog-box-text">
+                <p class="text-center"> <strong>WHY SRHR IS OFTEN EXCLUDED FROM UHC</strong> </p>
+                <div class="green-dotted-line"></div>
+                <p>Sexual and reproductive health and rights (SRHR) are vital part of overall health and well-being, and should be included as part of universal health coverage (UHC). However, in many countries, SRHR services are not consistently included as part of UHC due to social, cultural, and political barriers.</p>
+                <p>One of the main reasons that SRHR components are not always included in UHC is that they are often viewed as controversial or sensitive, particularly in countries with conservative social norms or where certain aspects of SRHR, such as abortion or contraception, are legally restricted. For example, some people may object to the provision of certain types of contraceptives or abortion services on moral or religious grounds. In addition, there may be stigma attached to seeking SRHR services, which can discourage people from accessing them. As a result, governments and policymakers may be hesitant to include SRHR services in UHC packages for fear of backlash or resistance from certain segments of the population. This can also be due to a lack of understanding about the importance of SRHR for overall health and well-being, or because other health issues are perceived as more pressing.</p>
+                <p>Another reason is that SRHR can be costly to implement, as it often requires the training of specialized healthcare providers and the procurement of specialized medical equipment and supplies. In low and middle income countries, where resources may be limited, governments may prioritize other health interventions over SRHR.</p>
+                <p>Finally, the lack of political will to prioritize SRHR can also contribute to its exclusion from UHC packages. In some cases, governments may prioritize other issues or may not see the value in investing in SRHR. This can lead to a lack of funding and support for SRHR programs and services, making it difficult to include them in UHC packages.</p>
+                <p>The exclusion of SRHR from UHC packages can be serious consequences for individuals and communities, particularly women and girls, who may be denied access to essential services and information. It is important for governments, civil society organizations, and other stakeholders to work together to address these barriers and ensure that all people have access to the SRHR services they need.</p>
+                <div class="blog-author">
+                    <div class="blog-author-img">
+                        <img src="./images/pic1.jpg" alt="">
+                    </div>
+                    <div class="blog-author-text">
+                        <strong>Mic Tyson</strong>
+                        <br>
+                        <span>September 21, 2023</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+</div>
+</div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <h3>HEDSO ORGANIZATION</h3>
+            <p class="mb-0" style="color: #4caf50">Muhoroni Office</p>
+            <p class="mb-0" style="color: #4caf50">Nyangoma, Muhoroni Kisumu</p>
+            <p class="mb-0" style="color: #4caf50">Kisumu Office</p>
+            <p class="mb-0" style="color: #4caf50">
+              Tom Mboya Estate, Kisumu, Kenya
+            </p>
+            <p class="mb-0" style="color: #4caf50">
+              <a href="tel:+254768546640">Phone No: +254768546640</a><br />
+              <a href="tel:+254715787077">Phone No: +254715787077</a>
+            </p>
+            <p class="mb-0" style="color: #4caf50">
+              <a href="mailto:info@hedso.org">Email: info@hedso.org</a>
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <h3>Quick Links</h3>
+            <ul class="list-unstyled">
+              <li><a href="./index.php">The Issue</a></li>
+              <li><a href="./approach.php">Our Approach</a></li>
+              <li><a href="./about.php">About Us</a></li>
+              <li><a href="./contact.php">Contact Us</a></li>
+              <li><a href="./donate.php">Donate</a></li>
+              <li><a href="./volunteer.php">Volunteer</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4">
+            <h3>Connect with Us</h3>
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a
+                  href="https://www.facebook.com/profile.php?id=100082997605803"
+                  target="_blank"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://twitter.com/HealthandEcono1" target="_blank"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a
+                  href="https://www.linkedin.com/company/health-and-economic-development-strategy-organization-hedso/"
+                  target="_blank"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a
+                  href="https://www.youtube.com/@healtheconomic"
+                  target="_blank"
+                  ><i class="fab fa-youtube"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a
+                  href="https://api.whatsapp.com/send?phone=254773222909"
+                  target="_blank"
+                  ><i class="fab fa-whatsapp"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <p class="small">
+              &copy; 2023 Hedso Organization. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Get the back button element by its id
+       const backButton = document.getElementById('backButton');
+
+      // Add a click event listener to the button
+      backButton.addEventListener('click', () => {
+          // Use the window.history object to go back to the previous page
+          window.history.back();
+      });
+
+      function showDropdown(element) {
+        var dropdownMenu = element.querySelector(".dropdown-menu");
+        if (dropdownMenu) {
+          dropdownMenu.style.display = "block";
+        }
+      }
+
+      function hideDropdown(element) {
+        var dropdownMenu = element.querySelector(".dropdown-menu");
+        if (dropdownMenu) {
+          dropdownMenu.style.display = "none";
+        }
+      }
+
+      function showSubmenu(element) {
+        var submenu = element.querySelector(".dropdown-menu");
+        if (submenu) {
+          submenu.style.display = "block";
+        }
+      }
+
+      function hideSubmenu(element) {
+        var submenu = element.querySelector(".dropdown-menu");
+        if (submenu) {
+          submenu.style.display = "none";
+        }
+      }
+
+      (function (I, L, T, i, c, k, s) {
+        if (I.iticks) return;
+        I.iticks = { host: c, settings: s, clientId: k, cdn: L, queue: [] };
+        var h = T.head || T.documentElement;
+        var e = T.createElement(i);
+        var l = I.location;
+        e.async = true;
+        e.src = (L || c) + "/client/inject-v2.min.js";
+        h.insertBefore(e, h.firstChild);
+        I.iticks.call = function (a, b) {
+          I.iticks.queue.push([a, b]);
+        };
+      })(
+        window,
+        "https://cdn-v1.intelliticks.com/prod/common",
+        document,
+        "script",
+        "https://app.intelliticks.com",
+        "FhefARnFeHNK3LCx4_c",
+        {}
+      );
+    </script>
+  </body>
+</html>
