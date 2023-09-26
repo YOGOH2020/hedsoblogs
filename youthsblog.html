@@ -132,6 +132,62 @@
     }
 }
 
+@media (max-width: 768px) {
+    .blog-box-img img {
+        max-width: 100%; /* Set maximum width to 100% for mobile view */
+        height: 300px; /* Automatically adjust height to maintain aspect ratio */
+    }
+}
+
+      /* Style for the reaction buttons */
+      .blog-reactions {
+          display: flex;
+          justify-content: flex-end; /* Align buttons to the far end */
+          align-items: center;
+          margin-top: 20px;
+          margin-right: 20px; /* Add some margin for spacing */
+      }
+
+      .reaction {
+          margin: 0 10px;
+      }
+
+      .like-button,
+      .dislike-button {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          border-radius: 50%;
+          padding: 5px; /* Reduce button padding for smaller size */
+          transition: background-color 0.3s, transform 0.2s;
+      }
+
+      .like-button:hover,
+      .dislike-button:hover {
+          background-color: rgba(76, 175, 80, 0.8); /* Change the background color on hover */
+          transform: scale(1.1); /* Add a slight scale effect on hover */
+      }
+
+      .like-button:focus,
+      .dislike-button:focus {
+          outline: none; /* Remove the focus outline */
+      }
+
+      /* Style for the thumbs-up and thumbs-down icons */
+      .like-button i,
+      .dislike-button i {
+          font-size: 18px; /* Reduce the icon size */
+          color: #4caf50;
+      }
+
+      /* Style for the counts */
+      #like-count,
+      #dislike-count {
+          margin-top: 5px;
+          font-size: 12px; /* Reduce the count font size */
+          color: #fff;
+      }
+
 
 
       .footer {
@@ -324,6 +380,20 @@
             <div class="blog-box-img">
                 <img src="./pic1.jpg" alt="blog img" style="height:500px;">
             </div>
+                      <div class="blog-reactions">
+              <div class="reaction">
+                  <button class="like-button" onclick="handleLike()">
+                      <i class="fas fa-thumbs-up"></i>
+                      <span id="like-count">0</span>
+                  </button>
+              </div>
+              <div class="reaction">
+                  <button class="dislike-button" onclick="handleDislike()">
+                      <i class="fas fa-thumbs-down"></i>
+                      <span id="dislike-count">0</span>
+                  </button>
+              </div>
+          </div>
             <div class="blog-box-text">
                 <p class="text-center"> <strong>YOUTHS MUST PARTICIPATE IN SRHR ENGAGEMENT</strong> </p>
                 <div class="green-dotted-line"></div>
@@ -431,6 +501,91 @@
       </div>
     </footer>
     <script>
+      // JavaScript code for handling like and dislike
+let liked = false;
+let disliked = false;
+let likeCount = 0;
+let dislikeCount = 0;
+
+// Check if the user has liked or disliked before using cookies or localStorage
+if (localStorage.getItem("liked")) {
+    liked = true;
+}
+
+if (localStorage.getItem("disliked")) {
+    disliked = true;
+}
+
+// Retrieve like and dislike counts from localStorage if available
+if (localStorage.getItem("likeCount")) {
+    likeCount = parseInt(localStorage.getItem("likeCount"));
+    document.getElementById("like-count").textContent = likeCount;
+}
+
+if (localStorage.getItem("dislikeCount")) {
+    dislikeCount = parseInt(localStorage.getItem("dislikeCount"));
+    document.getElementById("dislike-count").textContent = dislikeCount;
+}
+
+function handleLike() {
+    if (!liked) {
+        if (!disliked) {
+            likeCount++;
+            document.getElementById("like-count").textContent = likeCount;
+            liked = true;
+            localStorage.setItem("liked", "true"); // Store the like action
+        } else {
+            // If disliked, remove the dislike first
+            dislikeCount--;
+            document.getElementById("dislike-count").textContent = dislikeCount;
+            disliked = false;
+            likeCount++;
+            document.getElementById("like-count").textContent = likeCount;
+            liked = true;
+            localStorage.setItem("liked", "true"); // Store the like action
+            localStorage.removeItem("disliked"); // Remove the dislike action
+        }
+    } else {
+        // If already liked, remove the like
+        likeCount--;
+        document.getElementById("like-count").textContent = likeCount;
+        liked = false;
+        localStorage.removeItem("liked"); // Remove the like action
+    }
+
+    // Store the updated likeCount in localStorage
+    localStorage.setItem("likeCount", likeCount.toString());
+}
+
+function handleDislike() {
+    if (!disliked) {
+        if (!liked) {
+            dislikeCount++;
+            document.getElementById("dislike-count").textContent = dislikeCount;
+            disliked = true;
+            localStorage.setItem("disliked", "true"); // Store the dislike action
+        } else {
+            // If liked, remove the like first
+            likeCount--;
+            document.getElementById("like-count").textContent = likeCount;
+            liked = false;
+            dislikeCount++;
+            document.getElementById("dislike-count").textContent = dislikeCount;
+            disliked = true;
+            localStorage.setItem("disliked", "true"); // Store the dislike action
+            localStorage.removeItem("liked"); // Remove the like action
+        }
+    } else {
+        // If already disliked, remove the dislike
+        dislikeCount--;
+        document.getElementById("dislike-count").textContent = dislikeCount;
+        disliked = false;
+        localStorage.removeItem("disliked"); // Remove the dislike action
+    }
+
+    // Store the updated dislikeCount in localStorage
+    localStorage.setItem("dislikeCount", dislikeCount.toString());
+}
             // Get the back button element by its id
         const backButton = document.getElementById('backButton');
 
